@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3⃣ QuizWeb🧠</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="">
+    <div class="wrap">
+      <div class="card" role="application" aria-labelledby="title">
+        <div class="top">
+          <div class="brand">
+            <div class="logo">MA</div>
+            <div>
+              <h1 id="title">QuizWeb⏳</h1>
+              <p class="subtitle">
+                Timer • Progress • Categories • Sound • Dark/Light • Leaderboard
+              </p>
+            </div>
+          </div>
+
+          <div class="controls">
+            <label class="small">Category</label>
+            <select id="category">
+              <option value="logic">Logic</option>
+              <option value="javascript">JavaScript</option>
+              <option value="python">Python</option>
+              <option value="aptitude">Aptitude</option>
+            </select>
+
+            <label class="small">Questions</label>
+            <select id="qcount">
+              <option value="5">5</option>
+              <option value="8" selected>8</option>
+              <option value="10">10</option>
+            </select>
+
+            <label class="small">Time (s)</label>
+            <input
+              id="timePer"
+              type="number"
+              min="8"
+              max="60"
+              value="18"
+              style="width: 72px"
+            />
+
+            <button id="startBtn" class="btn">Start</button>
+
+            <div class="toggles">
+              <button id="soundToggle" class="btn ghost" title="Toggle sound">
+                Sound: ON
+              </button>
+              <button id="themeToggle" class="btn ghost" title="Dark / Light">
+                Theme
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="main">
+          <!-- LEFT: QUIZ AREA -->
+          <section class="quiz-area" aria-live="polite">
+            <div id="intro" class="">
+              <div class="meta">
+                <div class="flex">
+                  <div class="timer" id="timer">⏱ 0s</div>
+                  <div class="qcount">
+                    <small>Question</small> <strong id="qIndex">0</strong>/<span
+                      id="qTotal"
+                      >0</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="progress-wrap"
+                  role="progressbar"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >
+                  <div id="progress" class="progress"></div>
+                </div>
+              </div>
+
+              <div class="question" id="question">
+                Choose category & press <strong>Start</strong> to begin.
+              </div>
+
+              <div
+                id="options"
+                class="options"
+                aria-label="answer options"
+              ></div>
+
+              <div class="actions">
+                <div class="grow small muted">
+                  Tip: Select an answer — you can enable/disable sound, change
+                  theme, or restart.
+                </div>
+                <div>
+                  <button id="nextBtn" class="btn ghost hidden">Next</button>
+                </div>
+              </div>
+            </div>
+
+            <div id="resultBox" class="hidden"></div>
+          </section>
+
+          <!-- RIGHT: SIDEBAR -->
+          <aside class="sidebar" aria-hidden="false">
+            <h3>Session</h3>
+            <div class="info">
+              Category: <strong id="sideCategory">—</strong>
+            </div>
+            <div class="score-card">
+              <div class="small">Current Score</div>
+              <div style="font-size: 22px; font-weight: 700" id="liveScore">
+                0
+              </div>
+              <small id="timeSetting" class="muted"
+                >Time per question: 18s</small
+              >
+            </div>
+
+            <h3>Local Leaderboard</h3>
+            <div class="leaderboard" id="leaderboard">
+              <div class="muted small">
+                No saved scores yet — you'll see recent attempts here.
+              </div>
+            </div>
+
+            <div style="margin-top: 12px">
+              <button id="saveScore" class="btn ghost">Save Score</button>
+              <button id="clearScores" class="btn ghost">Clear Scores</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sound assets (public CDN) -->
+    <audio
+      id="sndCorrect"
+      src="correct.wav"
+      preload="auto"
+    ></audio>
+    <audio
+      id="sndWrong"
+      src="wrong.wav"
+      preload="auto"
+    ></audio>
+    <audio
+      id="sndTick"
+      src="tick.wav"
+      preload="auto"
+    ></audio>
+    <audio
+      id="sndFinish"
+      src="finish.wav"
+      preload="auto"
+    ></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
